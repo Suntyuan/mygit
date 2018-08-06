@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+  	<form-bean name="userForm" type="y2ssh.zhangcuishan.web.form.UserForm" />
+  	<form-bean name="goodsForm" type="y2ssh.zhangcuishan.web.form.GoodsForm" />
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+  
+   <action
+      path="/user" name="userForm"
+      type="y2ssh.zhangcuishan.web.action.UserAction"
+      validate="false" scope="request" parameter="operate">
+      <!-- 用户注册用 -->
+      <forward name="agree" path="/user_agreement.jsp"></forward>
+      <forward name="user" path="/user_info.jsp"></forward>
+      <forward name="success" path="/msg.jsp"></forward>
+      <!-- 用户登录用 -->
+      <forward name="index" path="/index.jsp"></forward>
+      <forward name="admin" path="/admin.jsp"></forward>
+    </action>
+    
+    <action
+      attribute="goodsForm"
+      name="goodsForm"
+      parameter="operate"
+      path="/goods"
+      scope="request"
+      type="y2ssh.zhangcuishan.web.action.GoodsAction"
+      validate="false" >
+      	<forward name="add_goods" path="/goods_info.jsp"></forward>
+      	<forward name="index" path="/index.jsp"></forward>
+      	<forward name="on_sale_list" path="/on_sale_list.jsp"></forward>
+      </action>
+
+  </action-mappings>
+
+  <message-resources parameter="y2ssh.zhangcuishan.ApplicationResources" />
+</struts-config>
+
